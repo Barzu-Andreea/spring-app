@@ -14,7 +14,7 @@ public class AppController {
 
     @GetMapping("/")
     public String home() {
-        return "Hello from Azure App Service ";
+        return "Hello from Andreea ";
     }
     
     @GetMapping("/maps")
