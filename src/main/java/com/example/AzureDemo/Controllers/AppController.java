@@ -62,11 +62,19 @@ public class AppController {
     public String home() {
         return "Hello from Azure App Service ";
     }
+    @GetMapping(value = "/location")
+    public JsonNode location (@RequestBody String location){
+        RestTemplate restTemplate = new RestTemplate();
+        String uri = "https://atlas.microsoft.com/search/address/json?&subscription-key=UwC-YUGM77leO589nwXnaesMfJVxea7ib3shhvKJWCM&api-version=1.0&language=en-US&query="+location;
+        JsonNode information = restTemplate.getForObject(uri,JsonNode.class);
+        return information.get("results").get(0).get("position");
+    }
 
     @GetMapping(value = "/weather")
-    public JsonNode weather (){
+    public JsonNode weather (@RequestBody JsonNode address){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "https://atlas.microsoft.com/weather/currentConditions/json?api-version=1.0&query=47.165222, 27.604736&subscription-key=UwC-YUGM77leO589nwXnaesMfJVxea7ib3shhvKJWCM";
+        String query = address.get("lat")+", "+address.get("lon");
+        String url = "https://atlas.microsoft.com/weather/currentConditions/json?api-version=1.0&query="+query+"&subscription-key=UwC-YUGM77leO589nwXnaesMfJVxea7ib3shhvKJWCM";
         JsonNode information = restTemplate.getForObject(url,JsonNode.class);
         return information;
     }
