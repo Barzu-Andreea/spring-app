@@ -1,12 +1,15 @@
 package com.example.AzureDemo.Controllers;
 
 import com.example.AzureDemo.Entities.Person;
+import com.example.AzureDemo.Entities.UploadFileDto;
 import com.example.AzureDemo.Repositories.PersonRepository;
+import com.example.AzureDemo.Services.IUploadFileService;
 import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -25,6 +28,15 @@ public class AppController {
 
     @Autowired
     private PersonRepository personRepository;
+
+    @Autowired
+    private IUploadFileService iUploadFileService;
+
+    @PostMapping ("/upload-file")
+    public ResponseEntity<String> uploadFileBlobStorage(@RequestBody UploadFileDto uploadFileDto){
+        String resultService = iUploadFileService.uploadFileAzure(uploadFileDto);
+        return new ResponseEntity<String>("OK",HttpStatus.OK);
+    }
 
     @GetMapping("/users")
     public List<Person> list(){
