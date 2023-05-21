@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 import java.io.IOException;
 import java.util.List;
 
@@ -26,6 +27,16 @@ public class AppController {
         return "Hello from Azure App Service ";
     }
 
+    @GetMapping("/redirect")
+    public RedirectView redirectToAnotherSite() {
+        String redirectUrl = "https://www.tripadvisor.com/Attractions-g304060-Activities-Iasi_Iasi_County_Northeast_Romania.html"; // Replace with the desired redirect URL
+
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl(redirectUrl);
+        
+        return redirectView;
+    }
+    
     @PostMapping ("/upload-file")
     public ResponseEntity<String> uploadFileBlobStorage(@RequestBody UploadFileDto uploadFileDto){
         String resultService = iAppService.uploadFileAzure(uploadFileDto);
