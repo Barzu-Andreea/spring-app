@@ -28,7 +28,7 @@ public class AppController {
     }
 
     @GetMapping("/redirect-attractions")
-    public RedirectView redirectToAnotherSite() {
+    public RedirectView redirectToAttractions() {
         String redirectUrl = "https://www.tripadvisor.com/Attractions-g304060-Activities-Iasi_Iasi_County_Northeast_Romania.html"; 
 
         RedirectView redirectView = new RedirectView();
@@ -38,7 +38,7 @@ public class AppController {
     }
     
     @GetMapping("/redirect-booking")
-    public RedirectView redirectToAnotherSite() {
+    public RedirectView redirectToBooking() {
         String redirectUrl = "https://www.tripadvisor.com/Hotels-g304060-Iasi_Iasi_County_Northeast_Romania-Hotels.html";
 
         RedirectView redirectView = new RedirectView();
@@ -48,7 +48,7 @@ public class AppController {
     }
     
     @GetMapping("/redirect-restaurants")
-    public RedirectView redirectToAnotherSite() {
+    public RedirectView redirectToRestaurants() {
         String redirectUrl = "https://www.tripadvisor.com/Restaurants-g304060-Iasi_Iasi_County_Northeast_Romania.html"; 
         
         RedirectView redirectView = new RedirectView();
