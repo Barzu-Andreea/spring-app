@@ -27,10 +27,30 @@ public class AppController {
         return "Hello from Azure App Service ";
     }
 
-    @GetMapping("/redirect")
+    @GetMapping("/redirect-attractions")
     public RedirectView redirectToAnotherSite() {
-        String redirectUrl = "https://www.tripadvisor.com/Attractions-g304060-Activities-Iasi_Iasi_County_Northeast_Romania.html"; // Replace with the desired redirect URL
+        String redirectUrl = "https://www.tripadvisor.com/Attractions-g304060-Activities-Iasi_Iasi_County_Northeast_Romania.html"; 
 
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl(redirectUrl);
+        
+        return redirectView;
+    }
+    
+    @GetMapping("/redirect-booking")
+    public RedirectView redirectToAnotherSite() {
+        String redirectUrl = "https://www.tripadvisor.com/Hotels-g304060-Iasi_Iasi_County_Northeast_Romania-Hotels.html";
+
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl(redirectUrl);
+        
+        return redirectView;
+    }
+    
+    @GetMapping("/redirect-restaurants")
+    public RedirectView redirectToAnotherSite() {
+        String redirectUrl = "https://www.tripadvisor.com/Restaurants-g304060-Iasi_Iasi_County_Northeast_Romania.html"; 
+        
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl(redirectUrl);
         
